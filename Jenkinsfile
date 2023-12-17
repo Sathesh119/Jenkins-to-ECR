@@ -27,7 +27,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script{
-                     aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 780163399491.dkr.ecr.ap-northeast-1.amazonaws.com
+                     docker.withRegistry("https://780163399491.dkr.ecr.ap-northeast-1.amazonaws.com", "ecr:ap-northeast-1:NewJenkinsuser") 
                     {
                     app.push("${env.BUILD_NUMBER}")
                     app.push("latest")
